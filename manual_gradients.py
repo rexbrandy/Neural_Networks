@@ -19,9 +19,9 @@ def forward(x):
 def loss(y, y_predicted):
     return ((y_predicted - y)**2).mean()
 
-# gradient
+# gradients
 # MSE = 1/N * (w*x - y)**2
-# calc derivative 
+# to calc derivative for MSE function
 # dJ/dw = 1/N 2x (w*x - y) 
 def gradient(x, y, y_predicted):
     return np.dot(2*x, y_predicted - y).mean()
@@ -32,7 +32,7 @@ lr = 0.01
 n_iters = 10
 
 for epoch in range(n_iters):
-    # prediction = forward pass
+    # prediction - forward pass
     y_pred = forward(X)
 
     # loss
@@ -41,7 +41,7 @@ for epoch in range(n_iters):
     # gradients
     dw = gradient(X, Y, y_pred)
 
-    # update weights
+    # update weights - backward pass
     w -= lr * dw
 
     if epoch % 1 == 0:
